@@ -8,7 +8,7 @@
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
         crossorigin="anonymous" />
-
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <title>@yield('title')</title>
 </head>
 
@@ -26,6 +26,20 @@
             </div>
         </div>
     </nav>
+
+    @if (session()->has('succes'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 1000)" x-show="show" class="alert alert-success sticky"
+            role="alert">
+            {{ session('succes') }}
+        </div>
+    @endif
+
+    @if (session()->has('delete'))
+        <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 1000)" x-show="show" class="alert alert-error sticky"
+            role="alert">
+            {{ session('succes') }}
+        </div>
+    @endif
 
 
     <div class="container-fluid">@yield('content')</div>
