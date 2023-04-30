@@ -30,9 +30,20 @@ Route::get('/sign-up', function () {
 //All payments
 Route::get('/', [PaymentController::class, 'index']);
 
-//Payment detail
-Route::get('/payments/{payment}', [PaymentController::class, 'show']);
 
 // Store Payment data
 
 Route::post('/payments', [PaymentController::class, 'store']);
+
+// Show edit form
+Route::get('/payments/{payment}/edit', [PaymentController::class, 'edit']);
+
+// Edit Submit to Update
+Route::put('/payments/{payment}', [PaymentController::class, 'update']);
+
+
+Route::delete('/payments/{payment}', [PaymentController::class, 'destroy']);
+
+
+//Payment detail
+Route::get('/payments/{payment}', [PaymentController::class, 'show']);

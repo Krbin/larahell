@@ -17,22 +17,14 @@ class PaymentFactory extends Factory
      */
     public function definition(): array
     {
-        $currency = $this->faker->currencyCode();
-        $amount = $this->faker->randomFloat(2, 0, 100000);
-        $value = Currency::convert()
-            ->from($currency)
-            ->to('SEK')
-            ->amount($amount)
-            ->get();
         return [
             'name' => $this->faker->word(),
-            'amount' => $amount,
-            'currency' => $currency,
+            'amount' => $this->faker->randomFloat(2, 0, 100000),
             'payer' => $this->faker->word(),
             'debtors' => $this->faker->word(2),
-            'date' => '2023-12-15',
+        // 'date' => $this->faker->dateTime(),
             'note' => $this->faker->sentence(),
-            'value' => $value
+
         ];
     }
 }

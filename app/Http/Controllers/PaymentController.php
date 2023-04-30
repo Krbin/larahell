@@ -20,17 +20,50 @@ class PaymentController extends Controller
         return view('payments.show', ['payment' => $payment]);
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        // $request['date'] = date("Y-m-d H:i:s", strtotime($request['date']));
+        // $request['date'] = $request['date'] ?? date('Y-m-d H:i:s', time());
         $formFields = request()->validate([
             'name' => 'required',
             'amount' => 'required',
-            'currency' => 'required',
             'payer' => 'required',
             'debtors' => 'required',
-            'note' => 'nullable',
+            'note' => 'nullable'
         ]);
 
-        return redirect('/');
+        Payment::create($formFields);
+
+
+        return redirect('/')->with('succes', 'Payment created succesfully');
+    }
+
+    //Show Edit Form
+    public function edit(Payment $payment)
+    {
+        return view('payments.edit', ['payment' => $payment]);
+    }
+
+    public function update(Request $request, Payment $payment)
+    {
+        $formFields = $request->validate([
+            'name' => 'required',
+            'amount' => 'required',
+            'payer' => 'required',
+            'debtors' => 'required',
+            'note' => 'nullable'
+        ]);
+
+        $payment->update($formFields);
+
+
+        return redirect("payments/{$payment->id}")->with('succes', 'Payment updated');
+    }
+
+
+    public function destroy(Payment $payment)
+    {
+        $payment->delete();
+        return redirect('/')->with('delete', 'Listing deleted succesfuly');
     }
 }

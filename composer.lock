@@ -8025,7 +8025,7 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^8.1"
+        "php": "^7.4.*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.3.0"

@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
-        Payment::factory(6)->create();
+        Payment::factory(20)->create();
         // Payment::create([
         //     'id' => 1,
         //     'name' => 'Test Name',

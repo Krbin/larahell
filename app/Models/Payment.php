@@ -10,6 +10,8 @@ class Payment extends Model
 
     use HasFactory;
 
+    protected $fillable = ['name', 'amount', 'currency', 'payer', 'debtors', 'note'];
+
     public function scopeFilter($query, array $filters)
     {
         if ($filters['search'] ?? false) {
@@ -19,6 +21,7 @@ class Payment extends Model
                 ->orWhere('currency', 'like', '%' . request('search') . '%')
                 ->orWhere('payer', 'like', '%' . request('search') . '%')
                 ->orWhere('debtors', 'like', '%' . request('search') . '%')
+                // ->orWhere('date', 'like', '%' . request('search') . '%')
                 ->orWhere('note', 'like', '%' . request('search') . '%');
         }
     }
