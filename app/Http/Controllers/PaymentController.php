@@ -9,7 +9,7 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        return view('payments.index', [
+        return view('payments.index.index', [
             'heading' => 'Home',
             'payments' => Payment::latest()->filter(request(['search']))->get()
         ]);

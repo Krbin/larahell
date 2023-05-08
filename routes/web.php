@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentController;
 
 /*
@@ -47,3 +48,6 @@ Route::delete('/payments/{payment}', [PaymentController::class, 'destroy']);
 
 //Payment detail
 Route::get('/payments/{payment}', [PaymentController::class, 'show']);
+
+// Show Register/Create Form
+Route::post('/users', [UserController::class, 'store']);

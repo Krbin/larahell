@@ -13,19 +13,8 @@
 </head>
 
 <body style="background-color: #181a1b">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbar">
-            <div class="navbar-nav">
-                <a class="nav-item nav-link" id="home" href="/">Home</a>
-                <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
-                <a class="nav-item nav-link" id="login" href="/login">Login</a>
-                <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
-            </div>
-        </div>
-    </nav>
+
+    @include('components.navbar')
 
     @if (session()->has('succes'))
         <div x-data="{ show: true }" x-init="setTimeout(() => show = false, 1000)" x-show="show" class="alert alert-success sticky"
@@ -42,7 +31,10 @@
     @endif
 
 
+
     <div class="container-fluid">@yield('content')</div>
+
+
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
     </script>
@@ -54,17 +46,6 @@
     </script>
 
 
-    <script type="text/javascript">
-        function deletePayment(paymentId) {
-            fetch("/delete-payment", {
-                method: "POST",
-                body: JSON.stringify({
-                    paymentId: paymentId
-                }),
-            }).then((_res) => {
-                window.location.href = "/";
-            });
-        }
-    </script>
+
 
 </body>
