@@ -8,15 +8,18 @@
                 @csrf
                 <div class="modal-body mx-3 mt-4">
                     <div class="md-form mb-2">
-                        <input type="email" id="defaultForm-email" class="form-control bg-dark text-light validate"
-                            name="email" placeholder="email" value="{{ old('email') }}">
-                        @error('email')
-                            <p class="text-danger" style="position: absolute">{{ $message }}</p>
-                        @enderror
+                        <input type="email" id="defaultForm-email"
+                            class="form-control bg-dark text-light validate @error('email') border-danger  @enderror"
+                            name="email"
+                            placeholder="@if ($errors->has('email')) @error('email') {{ $message }} @enderror @else email @endif"
+                            value="{{ old('email') }}">
+
                     </div>
                     <div class="md-form mb-2">
-                        <input type="password" id="defaultForm-pass" class="form-control bg-dark text-light validate"
-                            name="password" placeholder="password">
+                        <input type="password" id="defaultForm-pass"
+                            class="form-control bg-dark text-light validate @error('email') border-danger  @enderror"
+                            name="password"
+                            placeholder="@if ($errors->has('password')) @error('password') {{ $message }} @enderror @else password @endif">
 
                     </div>
 
