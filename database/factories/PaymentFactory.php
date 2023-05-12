@@ -18,11 +18,11 @@ class PaymentFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word(),
+            'payment_name' => $this->faker->word(),
             'amount' => $this->faker->randomFloat(2, 0, 100000),
             'payer' => $this->faker->word(),
             'debtors' => $this->faker->word(2),
-        // 'date' => $this->faker->dateTime(),
+            // 'date' => $this->faker->dateTime(),
             'note' => $this->faker->sentence(),
 
         ];

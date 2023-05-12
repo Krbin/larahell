@@ -4,9 +4,9 @@
                 <thead>
                     <tr>
                         <th scope="col">
-                            <input value="{{ old('name') }}" class="pt-1 pb-1 form-control bg-dark text-light"
-                                type="text" name="name" id="input-name" placeholder="name" />
-                            @error('name')
+                            <input value="{{ old('payment_name') }}" class="pt-1 pb-1 form-control bg-dark text-light"
+                                type="text" name="payment_name" id="input-name" placeholder="name" />
+                            @error('payment_name')
                                 <p class="text-danger" style="position: absolute">{{ $message }}</p>
                             @enderror
                         </th>

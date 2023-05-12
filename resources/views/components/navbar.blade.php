@@ -5,12 +5,20 @@
         <div class="collapse navbar-collapse" id="navbar">
             <div class="navbar-nav">
 
-                <a class="nav-item nav-link" id="home" href="/">home</a>
-                <a class="nav-item nav-link" id="logout" href="/logout">logout</a>
+                @auth
 
-                @include('users.login')
+                    <a class="nav-item nav-link" id="home" href="/">home</a>
+                    <form action="/logout" method="post">
+                        @csrf
+                        <button type="submit" class="nav-item nav-link bg-dark text-secondary border-0">logout</button>
+                    </form>
+                @else
+                    @include('users.login')
 
-                @include('users.register')
+                    @include('users.register')
+
+
+                @endauth
 
 
             </div>

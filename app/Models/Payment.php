@@ -10,12 +10,12 @@ class Payment extends Model
 
     use HasFactory;
 
-    protected $fillable = ['name', 'amount', 'currency', 'payer', 'debtors', 'note'];
+    protected $fillable = ['payment_name', 'amount', 'currency', 'payer', 'debtors', 'note'];
 
     public function scopeFilter($query, array $filters)
     {
         if ($filters['search'] ?? false) {
-            $query->where('name', 'like', '%' . request('search') . '%')
+            $query->where('payment_name', 'like', '%' . request('search') . '%')
                 ->orWhere('id', 'like', '%' . request('search') . '%')
                 ->orWhere('amount', 'like', '%' . request('search') . '%')
                 ->orWhere('currency', 'like', '%' . request('search') . '%')

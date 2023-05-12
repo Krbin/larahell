@@ -4,28 +4,29 @@
         <div class="modal-content bg-dark text-light">
 
 
-            <form action="/users" method="post">
+            <form action="/users/login" method="post">
                 @csrf
                 <div class="modal-body mx-3 mt-4">
+
+                    <div class="md-form mb-2">
+
+                        @error('login-email')
+                            {{ $message }}
+                        @enderror
+                    </div>
+
                     <div class="md-form mb-2">
                         <input type="email" id="defaultForm-email"
-                            class="form-control bg-dark text-light validate @error('email') border-danger  @enderror"
-                            name="email"
-                            placeholder="@if ($errors->has('email')) @error('email') {{ $message }} @enderror @else email @endif"
-                            value="{{ old('email') }}">
+                            class="form-control bg-dark text-light validate @error('login-email') border-danger  @enderror"
+                            name="login-email" placeholder="email" value="{{ old('email') }}">
 
                     </div>
                     <div class="md-form mb-2">
                         <input type="password" id="defaultForm-pass"
-                            class="form-control bg-dark text-light validate @error('email') border-danger  @enderror"
-                            name="password"
-                            placeholder="@if ($errors->has('password')) @error('password') {{ $message }} @enderror @else password @endif">
+                            class="form-control bg-dark text-light validate @error('login-email') border-danger  @enderror"
+                            name="login-password" placeholder="password">
 
                     </div>
-
-                    @error('incorrect')
-                        <p class="text-danger" style="position: absolute">{{ $message }}</p>
-                    @enderror
 
 
                 </div>

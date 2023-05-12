@@ -29,25 +29,32 @@ Route::get('/sign-up', function () {
 
 
 //All payments
-Route::get('/', [PaymentController::class, 'index']);
+Route::get('/', [PaymentController::class, 'index'])->name('login');
 
 
 // Store Payment data
 
-Route::post('/payments', [PaymentController::class, 'store']);
-
+Route::post('/payments', [PaymentController::class, 'store'])->middleware('auth');
+Route::post('/payments')->middleware('auth');
 // Show edit form
-Route::get('/payments/{payment}/edit', [PaymentController::class, 'edit']);
+Route::get('/payments/{payment}/edit', [PaymentController::class, 'edit'])->middleware('auth');
 
 // Edit Submit to Update
-Route::put('/payments/{payment}', [PaymentController::class, 'update']);
+Route::put('/payments/{payment}', [PaymentController::class, 'update'])->middleware('auth');
 
 
-Route::delete('/payments/{payment}', [PaymentController::class, 'destroy']);
+Route::delete('/payments/{payment}', [PaymentController::class, 'destroy'])->middleware('auth');
 
 
 //Payment detail
-Route::get('/payments/{payment}', [PaymentController::class, 'show']);
+Route::get('/payments/{payment}', [PaymentController::class, 'show'])->middleware('auth');
 
 // Show Register/Create Form
-Route::post('/users', [UserController::class, 'store']);
+Route::post('/users', [UserController::class, 'store'])->middleware('guest');
+Route::get('/users')->middleware('guest');
+
+Route::post('/users/login', [UserController::class, 'login'])->middleware('guest');
+Route::get('/users/login')->middleware('guest');
+
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
+ROute::get('/logout')->middleware('auth');

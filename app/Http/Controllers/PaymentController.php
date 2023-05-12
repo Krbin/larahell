@@ -25,7 +25,7 @@ class PaymentController extends Controller
         // $request['date'] = date("Y-m-d H:i:s", strtotime($request['date']));
         // $request['date'] = $request['date'] ?? date('Y-m-d H:i:s', time());
         $formFields = request()->validate([
-            'name' => 'required',
+            'payment_name' => 'required',
             'amount' => 'required',
             'payer' => 'required',
             'debtors' => 'required',
@@ -47,7 +47,7 @@ class PaymentController extends Controller
     public function update(Request $request, Payment $payment)
     {
         $formFields = $request->validate([
-            'name' => 'required',
+            'payment_name' => 'required',
             'amount' => 'required',
             'payer' => 'required',
             'debtors' => 'required',

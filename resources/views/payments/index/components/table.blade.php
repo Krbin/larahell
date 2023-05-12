@@ -16,7 +16,7 @@
             <tr>
                 <th scope="col">{{ $payment->id }}</th>
                 <th scope="col">
-                    <a href={{ '/payments/' . $payment->id }}>{{ $payment->name }}</a>
+                    <a href={{ '/payments/' . $payment->id }}>{{ $payment->payment_name }}</a>
                 </th>
                 <th scope="col">{{ $payment->amount }}</th>
                 <th scope="col">{{ $payment->payer }}</th>

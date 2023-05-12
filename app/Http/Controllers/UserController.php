@@ -11,9 +11,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $formFields = $request->validate([
-            'username' => ['required', 'min:3'],
+            'name' => ['required', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', 'confirm', 'min:6']
+            'password' => 'required|confirmed|min:6'
         ]);
 
 
@@ -22,6 +22,36 @@ class UserController extends Controller
         $user = User::create($formFields);
 
         auth()->login($user);
-        return redirect('/')->with('succes', 'Account succesfuly created');
+        return redirect('/')->with('succes', 'Account created succesfuly');
+    }
+
+    public function login(Request $request)
+    {
+
+        $request['email'] = $request['login-email'];
+        $request['password'] = $request['login-password'];
+
+        $formFields = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => 'required'
+        ]);
+
+        if (auth()->attempt($formFields)) {
+            $request->session()->regenerate();
+
+            return redirect('/')->with('succes', 'You are logged in');
+        }
+
+        return back()->withErrors(['login-email' => 'Invalid credentials']);
+    }
+
+    public function logout(Request $request)
+    {
+        auth()->logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('message', 'You have been loged out');
     }
 }
